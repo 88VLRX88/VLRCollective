@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VLR Collective</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Session Panel -->
+    <div class="session-panel">
+        <input type="text" id="sessionIdInput" placeholder="Enter session ID">
+        <button onclick="loadSession()" class="btn-primary">Load</button>
+    </div>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+        <button onclick="showTab('discussion')" class="tab-btn">Discussion</button>
+        <button onclick="showTab('synthesis')" class="tab-btn">Synthesis</button>
+        <button onclick="showTab('query')" class="tab-btn">Query</button>
+        <button onclick="showTab('agents')" class="tab-btn">Agents</button>
+    </div>
+
+    <!-- Content Area -->
+    <div id="content">
+        <!-- Discussion Tab -->
+        <div class="tab-content" id="discussion">
+            <h2>Discussion</h2>
+            <pre id="logOutput"></pre>
+            <div class="controls">
+                <button onclick="refreshLogs()" class="btn-secondary">⟳ Refresh</button>
+                <label class="auto-refresh-label">
+                    <input type="checkbox" id="autoRefresh" onchange="toggleAutoRefresh()"> Auto (3s)
+                </label>
+                <span id="status" class="status-badge">Enter session ID</span>
+            </div>
+        </div>
+
+        <!-- Synthesis Tab -->
+        <div class="tab-content" id="synthesis">
+            <h2>Synthesis</h2>
+            <pre id="synthesisOutput"></pre>
+            <div class="controls">
+                <button onclick="refreshSynthesis()" class="btn-secondary">⟳ Refresh</button>
+            </div>
+        </div>
+
+        <!-- Query Tab -->
+        <div class="tab-content" id="query">
+            <h2>Query</h2>
+            <textarea id="questionInput" placeholder="Enter your question..."></textarea>
+            <button onclick="sendQuestion()" class="btn-primary">➤ Send</button>
+            <div id="query-status" class="status-badge" style="margin-top: 0.5rem;"></div>
+        </div>
+
+        <!-- Agents Tab -->
+        <div class="tab-content" id="agents">
+            <h2>Agents Configuration</h2>
+            <div id="agentList"></div>
+            <div class="add-agent-form">
+                <input type="text" id="agentIdInput" placeholder="Agent ID">
+                <input type="text" id="modelInput" placeholder="Model (e.g., qwen3-14b)">
+                <input type="text" id="patternInput" placeholder="Pattern (e.g., aggressive)">
+                <button onclick="addAgent()" class="btn-secondary">+ Add Agent</button>
+            </div>
+            <div class="meta">
+                <label>
+                    Meta iterations: 
+                    <input type="number" id="metaIterations" value="4" min="1" max="20">
+                </label>
+                <button onclick="saveSettings()" class="btn-primary">Save All Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

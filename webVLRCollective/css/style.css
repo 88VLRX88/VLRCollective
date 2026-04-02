@@ -1,0 +1,351 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: #0a0c10;
+    color: #e8edf2;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+/* Session Panel */
+.session-panel {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #0f1117;
+    border-radius: 12px;
+    border: 1px solid #2a2c32;
+}
+
+.session-panel input {
+    flex: 1;
+    background: #0a0c10;
+    border: 1px solid #2a2c32;
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    color: #e8edf2;
+    font-size: 0.9rem;
+    font-family: monospace;
+}
+
+.session-panel input:focus {
+    outline: none;
+    border-color: #5865f2;
+    box-shadow: 0 0 0 2px rgba(88, 101, 242, 0.2);
+}
+
+/* ВСЕ КНОПКИ (единый стиль) */
+button,
+.btn-primary,
+.btn-secondary,
+#query button,
+.session-panel button,
+.controls button,
+.meta button,
+.add-agent-form button,
+.agent-card button {
+    background: #5865f2;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    color: white;
+    font-weight: 500;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+#query button:hover,
+.session-panel button:hover,
+.controls button:hover,
+.meta button:hover,
+.add-agent-form button:hover,
+.agent-card button:hover {
+    background: #4752c4;
+    transform: translateY(-1px);
+}
+
+/* Кнопка Delete — выделяем красным */
+.agent-card button {
+    background: #2a2c32;
+}
+
+.agent-card button:hover {
+    background: #e04848;
+}
+
+/* Вкладки */
+.tabs {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #2a2c32;
+    padding-bottom: 0;
+}
+
+.tab-btn {
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    color: #8e9aaf;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border-bottom: 2px solid transparent;
+}
+
+.tab-btn:hover {
+    color: #e8edf2;
+}
+
+.tab-btn.active {
+    color: #5865f2;
+    border-bottom-color: #5865f2;
+}
+
+/* Контент вкладок */
+.tab-content {
+    display: none;
+    animation: fadeIn 0.2s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+h2 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    color: #e8edf2;
+}
+
+/* Логи и синтез */
+#logOutput, #synthesisOutput {
+    background: #0f1117;
+    border: 1px solid #2a2c32;
+    border-radius: 12px;
+    padding: 1rem;
+    font-family: 'Fira Code', 'SF Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+/* Форма вопроса */
+#questionInput {
+    width: 100%;
+    background: #0f1117;
+    border: 1px solid #2a2c32;
+    border-radius: 12px;
+    padding: 1rem;
+    color: #e8edf2;
+    font-size: 0.9rem;
+    font-family: inherit;
+    resize: vertical;
+    margin-bottom: 1rem;
+}
+
+#questionInput:focus {
+    outline: none;
+    border-color: #5865f2;
+}
+
+/* Контролы */
+.controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.auto-refresh-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #8e9aaf;
+    cursor: pointer;
+}
+
+.auto-refresh-label input {
+    accent-color: #5865f2;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.status-badge {
+    background: #0f1117;
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    color: #8e9aaf;
+    font-family: monospace;
+}
+
+/* Агенты */
+#agentList {
+    margin-bottom: 1rem;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.agent-card {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: #0f1117;
+    border: 1px solid #2a2c32;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    align-items: center;
+}
+
+.agent-card input {
+    flex: 1;
+    background: #0a0c10;
+    border: 1px solid #2a2c32;
+    border-radius: 6px;
+    padding: 0.5rem;
+    color: #e8edf2;
+    font-size: 0.8rem;
+    font-family: monospace;
+}
+
+.agent-card input:read-only {
+    background: #0a0c10;
+    opacity: 0.8;
+}
+
+/* Форма добавления агента */
+.add-agent-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.add-agent-form input {
+    flex: 1;
+    min-width: 120px;
+    background: #0f1117;
+    border: 1px solid #2a2c32;
+    border-radius: 8px;
+    padding: 0.6rem 0.8rem;
+    color: #e8edf2;
+    font-size: 0.8rem;
+}
+
+/* Мета-настройки */
+.meta {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #2a2c32;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.meta label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: #8e9aaf;
+}
+
+.meta input {
+    background: #0f1117;
+    border: 1px solid #2a2c32;
+    border-radius: 6px;
+    padding: 0.4rem 0.6rem;
+    color: #e8edf2;
+    width: 70px;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0c10;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2c32;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #5865f2;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 700px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .session-panel {
+        flex-direction: column;
+    }
+    
+    .tabs {
+        overflow-x: auto;
+        white-space: nowrap;
+        flex-wrap: nowrap;
+    }
+    
+    .agent-card {
+        flex-wrap: wrap;
+    }
+    
+    .add-agent-form {
+        flex-direction: column;
+    }
+    
+    .meta {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #query button {
+        width: 100%;
+    }
+}
